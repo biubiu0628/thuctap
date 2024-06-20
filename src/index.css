@@ -1,13 +1,33 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'SF Pro Display Regular';
+    src: url('../src/fonts/ProDisplay/SFPRODISPLAYREGULAR.OTF') format('opentype');   
+}
+@font-face {
+    font-family: 'SF Pro Display Medium';
+    src: url('../src/fonts/ProDisplay/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+}
+@font-face {
+    font-family: 'SF Pro Display Bold';
+    src: url('../src/fonts/ProDisplay/SFPRODISPLAYBOLD.OTF') format('opentype'); 
+}
+@font-face {
+    font-family: 'SF Mono Regular';
+    src: url('../src/fonts/SFMono/SFMono-Regular.otf') format('opentype'); 
+}
+@font-face {
+    font-family: 'SF Mono Medium';
+    src: url('../src/fonts/SFMono/SFMono-Medium.otf') format('opentype'); 
+}
+@font-face {
+    font-family: 'SF Mono Semibold';
+    src: url('../src/fonts/SFMono/SFMono-Semibold.otf') format('opentype'); 
+}
+@font-face {
+    font-family: 'SF Mono Bold';
+    src: url('../src/fonts/SFMono/SFMono-Bold.otf') format('opentype'); 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
