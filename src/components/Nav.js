@@ -72,7 +72,7 @@ const Nav = () => {
   ];
 
   return (
-    <div className="sticky h-screen bg-gradient-to-b from-[#EF586B] to-[#D9112A] flex flex-col justify-between">
+    <div className="fixed h-screen bg-gradient-to-b from-[#EF586B] to-[#D9112A] flex flex-col justify-between w-[260px]">
       <div className="flex flex-col items-center gap-3">
         <img src={Logo} alt="" className="py-5" />
         {buttons.map((button, index) => (
