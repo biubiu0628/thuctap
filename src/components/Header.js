@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Search from "../images/Header/search.svg";
 import Cancel from "../images/Header/cancel.svg";
 import Options from "../images/Header/Options.svg";
 import Noti from "../images/Header/noti.svg";
 import Avatar from "../images/Header/avatar.svg";
 import Up from "../images/Header/up.svg";
+import Notification from "./Notification";
 
 const Header = () => {
+  const [isClick, setIsClick] = useState(false);
+
   return (
     <div className="flex items-center justify-between">
       {/* search bar */}
@@ -36,17 +39,22 @@ const Header = () => {
           <img src={Options} alt="" />
         </button>
       </div>
+      {/* noti va user */}
       <div className="flex items-center gap-3">
-        <button
-          className="relative size-[40px] flex items-center 
-        justify-center bg-white rounded-full"
-        >
-          <img src={Noti} alt="" />
-          <span class="absolute top-[10px] right-[10px] flex size-[7px]">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F32034] opacity-75"></span>
-            <span class="relative inline-flex rounded-full size-[7px] bg-[#F32034]"></span>
-          </span>
-        </button>
+        <div className="relative">
+          <button
+            className="relative size-[40px] flex items-center rounded-full
+            justify-center bg-white hover:bg-[#F2F2F2] shadow-xl"
+            onClick={() => setIsClick(!isClick)}
+          >
+            <img src={Noti} alt="" />
+            <span class="absolute top-[10px] right-[10px] flex size-[7px]">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F32034] opacity-75"></span>
+              <span class="relative inline-flex rounded-full size-[7px] bg-[#F32034]"></span>
+            </span>
+          </button>
+          <Notification isClick={isClick} />
+        </div>
         <div
           className="flex items-center bg-white 
         rounded-full h-[40px] pl-1 pr-2 gap-3"

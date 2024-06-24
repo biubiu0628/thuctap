@@ -1,10 +1,22 @@
 import React from "react";
 
-const Transport = ({ name, color, status, logo, rate, price, number }) => {
+const Transport = ({
+  name,
+  color,
+  isChoose,
+  handleChoose,
+  status,
+  logo,
+  rate,
+  price,
+  number,
+  children,
+}) => {
   return (
     <div
-      className="w-full flex flex-col border-[1.5px] 
-    border-[#E5E5E5] rounded-lg my-2"
+      className={`w-full flex flex-col border-[1.5px] rounded-lg my-2 cursor-pointer
+      ${isChoose ? "border-[#F32034]" : "border-[#E5E5E5]"} hover:bg-[#F2F2F2]`}
+      onClick={handleChoose}
     >
       <div
         className="w-[50px] h-[14px] rounded-r-full rounded-tl-full uppercase 
@@ -24,33 +36,7 @@ const Transport = ({ name, color, status, logo, rate, price, number }) => {
               <span className="text-[#666666]">Tỷ lệ: </span>
               <span className="text-[#188B54]">{rate}</span>
             </p>
-            <div className="rating">
-              <input
-                type="radio"
-                name="rating-1"
-                className="mask mask-star bg-yellow-400"
-              />
-              <input
-                type="radio"
-                name="rating-1"
-                className="mask mask-star bg-yellow-400"
-              />
-              <input
-                type="radio"
-                name="rating-1"
-                className="mask mask-star bg-yellow-400"
-              />
-              <input
-                type="radio"
-                name="rating-1"
-                className="mask mask-star bg-yellow-400"
-              />
-              <input
-                type="radio"
-                name="rating-1"
-                className="mask mask-star bg-yellow-400"
-              />
-            </div>
+            {children}
           </div>
         </div>
         <div>

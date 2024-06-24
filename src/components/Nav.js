@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/Nav/logo.svg";
 import Home from "../images/Nav/home.svg";
@@ -55,14 +55,22 @@ const ButtonDrop = ({ image, name, isActive, handleActive, index, path }) => (
 const Nav = () => {
   const [isActive, setIsActive] = useState(0);
 
+  useEffect(() => {
+    const savedIndex = localStorage.getItem("activeButton");
+    if (savedIndex !== null) {
+      setIsActive(parseInt(savedIndex, 10));
+    }
+  }, []);
+
   const handleActive = (index) => {
     setIsActive(index);
+    localStorage.setItem("activeButton", index);
   };
 
   const buttons = [
     { image: Home, imageActive: HomeActive, name: "Trang chủ", path: "/" },
     { image: Add, imageActive: AddActive, name: "Tạo đơn", path: "/create" },
-    { image: Box, imageActive: BoxActive, name: "Đơn hàng" },
+    { image: Box, imageActive: BoxActive, name: "Đơn hàng", path: "/order" },
     { image: Data, imageActive: DataActive, name: "Thống kê" },
   ];
 

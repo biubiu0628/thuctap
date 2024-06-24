@@ -31,11 +31,81 @@ import Service from "../../modules/CreateOrder/Service";
 import Transport from "../../modules/CreateOrder/Transport";
 import Fee from "../../modules/CreateOrder/Fee";
 import Total from "../../modules/CreateOrder/TotalValue";
+import Rating from "../../modules/CreateOrder/Rating";
 
 const Create = () => {
   const [isCheck, setIsCheck] = useState(false);
   const handleCheck = () => {
     setIsCheck(!isCheck);
+  };
+
+  const [isChoose, setIsChoose] = useState(-1);
+  const handleChoose = (index) => {
+    setIsChoose(index);
+  };
+
+  const TransportsThamKhao = [
+    {
+      name: "Giao Hàng Tiết Kiệm",
+      rate: "97.12%",
+      color: "#F32034",
+      status: "quá tải",
+      logo: Logo2,
+      price: "16.500",
+      number: "1",
+      ratingName: "rating-ghtk",
+    },
+    {
+      name: "Giao Hàng Nhanh",
+      rate: "97.12%",
+      color: "#F32034",
+      status: "quá tải",
+      logo: Logo3,
+      price: "16.500",
+      number: "1",
+      ratingName: "rating-ghn",
+    },
+    {
+      name: "VietelPost",
+      rate: "97.12%",
+      color: "#F32034",
+      status: "quá tải",
+      logo: Logo4,
+      price: "16.500",
+      number: "1",
+      ratingName: "rating-viettel",
+    },
+    {
+      name: "Ninja",
+      rate: "97.12%",
+      color: "#F32034",
+      status: "quá tải",
+      logo: Logo5,
+      price: "16.500",
+      number: "1",
+      ratingName: "rating-ninja",
+    },
+    {
+      name: "Best Express",
+      rate: "97.12%",
+      color: "#F32034",
+      status: "quá tải",
+      logo: Logo6,
+      price: "16.500",
+      number: "1",
+      ratingName: "rating-bestExpress",
+    },
+  ];
+
+  const TransportGoiY = {
+    name: "SuperShip",
+    rate: "97.12%",
+    color: "#27A568",
+    status: "tốt",
+    logo: Logo1,
+    price: "16.500",
+    number: "1",
+    ratingName: "rating-SuperShip",
   };
 
   return (
@@ -395,61 +465,36 @@ const Create = () => {
               {/* goiy */}
               <p className="text-[14px] font-proMedium">Gợi ý</p>
               <Transport
-                name="SuperShip"
-                rate="97.12%"
-                color="#27A568"
-                status="tốt"
-                logo={Logo1}
-                price="16.500"
-                number="1"
-              />
+                name={TransportGoiY.name}
+                rate={TransportGoiY.rate}
+                color={TransportGoiY.color}
+                status={TransportGoiY.status}
+                logo={TransportGoiY.logo}
+                price={TransportGoiY.price}
+                number={TransportGoiY.number}
+                isChoose={isChoose === -1}
+                handleChoose={() => handleChoose(-1)}
+              >
+                <Rating name={TransportGoiY.ratingName} />
+              </Transport>
               {/* thamkhao */}
               <p className="text-[14px] font-proMedium">Tham khảo</p>
-              <Transport
-                name="Giao Hàng Tiết Kiệm"
-                rate="97.12%"
-                color="#F32034"
-                status="quá tải"
-                logo={Logo2}
-                price="16.500"
-                number="1"
-              />
-              <Transport
-                name="Giao Hàng Nhanh"
-                rate="97.12%"
-                color="#F32034"
-                status="quá tải"
-                logo={Logo3}
-                price="16.500"
-                number="1"
-              />
-              <Transport
-                name="VietelPost"
-                rate="97.12%"
-                color="#F32034"
-                status="quá tải"
-                logo={Logo4}
-                price="16.500"
-                number="1"
-              />
-              <Transport
-                name="Ninja"
-                rate="97.12%"
-                color="#F32034"
-                status="quá tải"
-                logo={Logo5}
-                price="16.500"
-                number="1"
-              />
-              <Transport
-                name="Best Express"
-                rate="97.12%"
-                color="#F32034"
-                status="quá tải"
-                logo={Logo6}
-                price="16.500"
-                number="1"
-              />
+              {TransportsThamKhao.map((transport, index) => (
+                <Transport
+                  key={index}
+                  name={transport.name}
+                  rate={transport.rate}
+                  color={transport.color}
+                  status={transport.status}
+                  logo={transport.logo}
+                  price={transport.price}
+                  number={transport.number}
+                  isChoose={isChoose === index}
+                  handleChoose={() => handleChoose(index)}
+                >
+                  <Rating name={transport.ratingName} />
+                </Transport>
+              ))}
               {/* dich vu them */}
               <div>
                 <p className="text-[16px] font-proBold pt-6 pb-2">

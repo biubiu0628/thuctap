@@ -2,8 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
-import Home from "./components/Home/Home";
+import Home from "./pages/Home/index";
 import Create from "./pages/CreateOrder/index";
+import Order from "./pages/Order/index";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/order" element={<Order />} />
           </Routes>
         </div>
       </div>

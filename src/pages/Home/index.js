@@ -8,8 +8,7 @@ import Image3 from "../../images/Home/image3.svg";
 import Image4 from "../../images/Home/image4.svg";
 import AppStore from "../../images/Home/appstore.svg";
 import GooglePlay from "../../images/Home/googleplay.svg";
-import DonutChart from "./DonutChart";
-import FunnelChart from "./FunnelChart";
+import DonutChart from "../../modules/Home/DonutChart";
 
 const TableLeft = ({ name, children }) => (
   <div className="bg-white rounded-2xl pt-4">
