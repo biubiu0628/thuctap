@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home/index";
 import Create from "./pages/CreateOrder/index";
 import Order from "./pages/Order/index";
+import Stat from "./pages/Stat/index";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/stat" element={<Stat />} />
           </Routes>
         </div>
       </div>

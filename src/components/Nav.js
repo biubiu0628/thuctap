@@ -71,7 +71,7 @@ const Nav = () => {
     { image: Home, imageActive: HomeActive, name: "Trang chủ", path: "/" },
     { image: Add, imageActive: AddActive, name: "Tạo đơn", path: "/create" },
     { image: Box, imageActive: BoxActive, name: "Đơn hàng", path: "/order" },
-    { image: Data, imageActive: DataActive, name: "Thống kê" },
+    { image: Data, imageActive: DataActive, name: "Thống kê", path: "/stat" },
   ];
 
   const buttonDrops = [

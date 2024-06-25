@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Search from "../images/Header/search.svg";
 import Cancel from "../images/Header/cancel.svg";
 import Options from "../images/Header/Options.svg";
 import Noti from "../images/Header/noti.svg";
 import Avatar from "../images/Header/avatar.svg";
 import Up from "../images/Header/up.svg";
-import Notification from "./Notification";
+import Notification from "../modules/Header/Notification";
+import Account from "../modules/Header/Account";
 
 const Header = () => {
-  const [isClick, setIsClick] = useState(false);
-
   return (
     <div className="flex items-center justify-between">
       {/* search bar */}
@@ -41,11 +40,11 @@ const Header = () => {
       </div>
       {/* noti va user */}
       <div className="flex items-center gap-3">
-        <div className="relative">
+        {/* Noti */}
+        <div className="dropdown">
           <button
-            className="relative size-[40px] flex items-center rounded-full
+            className="size-[40px] flex items-center rounded-full
             justify-center bg-white hover:bg-[#F2F2F2] shadow-xl"
-            onClick={() => setIsClick(!isClick)}
           >
             <img src={Noti} alt="" />
             <span class="absolute top-[10px] right-[10px] flex size-[7px]">
@@ -53,10 +52,11 @@ const Header = () => {
               <span class="relative inline-flex rounded-full size-[7px] bg-[#F32034]"></span>
             </span>
           </button>
-          <Notification isClick={isClick} />
+          <Notification />
         </div>
+        {/* User */}
         <div
-          className="flex items-center bg-white 
+          className="dropdown dropdown-end flex items-center bg-white 
         rounded-full h-[40px] pl-1 pr-2 gap-3"
         >
           <img src={Avatar} alt="" />
@@ -64,6 +64,7 @@ const Header = () => {
           <button>
             <img src={Up} alt="" className="stroke-black" />
           </button>
+          <Account />
         </div>
       </div>
     </div>

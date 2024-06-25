@@ -1,10 +1,10 @@
 import React from "react";
-import Checkmark from "../images/Header/Checkmark.svg";
-import Exit from "../images/Header/Exit.svg";
-import List from "../images/Header/list.svg";
+import Checkmark from "../../images/Header/Checkmark.svg";
+import Exit from "../../images/Header/Exit.svg";
+import List from "../../images/Header/list.svg";
 
 const NewNoti = () => (
-  <div className="grid grid-cols-[10%_90%] h-[64px] shadow rounded-2xl p-3 my-2 cursor-pointer">
+  <button className="grid grid-cols-[10%_90%] w-full h-[64px] shadow rounded-2xl p-3 my-2 cursor-pointer">
     <div className="flex items-center justify-start">
       <img src={List} alt="" />
     </div>
@@ -23,11 +23,11 @@ const NewNoti = () => (
         </span>
       </p>
     </div>
-  </div>
+  </button>
 );
 
 const PrevNoti = () => (
-  <div className="grid grid-cols-[10%_90%] h-[64px] shadow rounded-2xl p-3 my-2 cursor-pointer">
+  <button className="grid grid-cols-[10%_90%] w-full h-[64px] shadow rounded-2xl p-3 my-2 cursor-pointer">
     <div className="flex items-center justify-start">
       <img src={List} alt="" />
     </div>
@@ -42,16 +42,14 @@ const PrevNoti = () => (
         </span>
       </p>
     </div>
-  </div>
+  </button>
 );
 
-const Notification = ({ isClick }) => {
+const Notification = () => {
   return (
     <div
-      className={`w-[423px] h-[550px] rounded-xl bg-white 
-    shadow-lg absolute z-10 top-10 mt-2 right-[-195.5px] ${
-      isClick ? "block" : "hidden"
-    }`}
+      className="dropdown-content menu w-[423px] h-[550px] rounded-xl bg-white 
+    shadow-lg absolute z-10 top-10 mt-2 right-[-195.5px]"
     >
       <div className="flex justify-between py-4 px-6 border-b-[1px]">
         <p className="font-proBold text-[24px]">Thông báo</p>

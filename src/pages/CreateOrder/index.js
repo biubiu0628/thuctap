@@ -32,6 +32,7 @@ import Transport from "../../modules/CreateOrder/Transport";
 import Fee from "../../modules/CreateOrder/Fee";
 import Total from "../../modules/CreateOrder/TotalValue";
 import Rating from "../../modules/CreateOrder/Rating";
+import Policy from "../../modules/CreateOrder/Policy";
 
 const Create = () => {
   const [isCheck, setIsCheck] = useState(false);
@@ -43,6 +44,8 @@ const Create = () => {
   const handleChoose = (index) => {
     setIsChoose(index);
   };
+
+  const [isRead, setIsRead] = useState(false);
 
   const TransportsThamKhao = [
     {
@@ -520,6 +523,7 @@ const Create = () => {
         </div>
       </div>
       <div className="flex flex-col items-end ">
+        {/* dieu khoan */}
         <div className="w-[459.25px] flex items-center gap-1 py-4">
           <input
             type="checkbox"
@@ -528,10 +532,14 @@ const Create = () => {
           />
           <p className="text-[14px]">
             <span className="font-pro">Tôi đã đọc và đồng ý với </span>
-            <span className="text-[#CB2D38] font-proMedium">
+            <span
+              className="text-[#CB2D38] font-proMedium cursor-pointer"
+              onClick={() => setIsRead(!isRead)}
+            >
               Điều khoản & quy định
             </span>
           </p>
+          <Policy isRead={isRead} />
         </div>
         <div className="w-[459.25px] grid grid-cols-2 h-[53px] gap-2 mb-8">
           <button

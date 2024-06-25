@@ -17,17 +17,17 @@ const Order = () => {
         <div className="flex gap-2">
           <Tag
             name="Hôm nay"
-            quantity="22"
+            quantity="(22)"
             color="#F32034"
             colorText="white"
             children={<img src={Down} alt="" />}
           />
-          <Tag name="Tạo mới" quantity="0" />
-          <Tag name="Chờ lấy" quantity="0" />
-          <Tag name="Đã lấy" quantity="0" />
-          <Tag name="Đang vận chuyển" quantity="0" />
-          <Tag name="Đang giao" quantity="0" />
-          <Tag name="Giao thành công" quantity="0" />
+          <Tag name="Tạo mới" quantity="(0)" />
+          <Tag name="Chờ lấy" quantity="(0)" />
+          <Tag name="Đã lấy" quantity="(0)" />
+          <Tag name="Đang vận chuyển" quantity="(0)" />
+          <Tag name="Đang giao" quantity="(0)" />
+          <Tag name="Giao thành công" quantity="(0)" />
         </div>
         <div className="flex gap-2">
           <button
