@@ -1,12 +1,12 @@
 import React from "react";
-import Last from "../../images/Stat/last.svg";
-import Next from "../../images/Stat/next.svg";
+import Last from "../images/Stat/last.svg";
+import Next from "../images/Stat/next.svg";
 
-const Calendar = () => {
+const Calendar = ({ props }) => {
   return (
     <div
-      className="dropdown-content absolute z-10 left-0 top-[93px] 
-        size-[300px] px-2 bg-[#FBEFF2] rounded-b-xl"
+      className={`${props} dropdown-content absolute z-10 left-0 
+      top-[93px] size-[300px] px-2 bg-[#FBEFF2] rounded-b-xl`}
     >
       <div
         className="flex justify-between h-[40px] 

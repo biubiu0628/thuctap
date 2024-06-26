@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ID from "../../images/Header/id.svg";
 import Resume from "../../images/Header/Resume.svg";
 import Lock from "../../images/Header/Lock.svg";
@@ -13,7 +14,7 @@ import API from "../../images/Header/API.svg";
 
 const Menu = ({ image, children, childtext, button }) => (
   <button
-    className={`w-[230px] px-4 py-3 flex justify-between bg-white ${children}`}
+    className={`w-[230px] px-4 py-3 flex justify-between items-center bg-white ${children}`}
   >
     <div className="flex gap-2 items-center">
       <img src={image} alt="" />
@@ -35,9 +36,9 @@ const Account = () => {
             </p>
           }
           button={
-            <button>
+            <Link to="/account">
               <img src={Right} alt="" />
-            </button>
+            </Link>
           }
           children="rounded-t-xl"
         />

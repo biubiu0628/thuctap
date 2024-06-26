@@ -6,7 +6,7 @@ import DonutMoney from "../../modules/Stat/DonutMoney";
 import DonutPercent from "../../modules/Stat/DonutPercent";
 import DonutStatus from "../../modules/Stat/DonutStatus";
 import Menu from "../../modules/Stat/Menu";
-import Calendar from "../../modules/Stat/Calendar";
+import Calendar from "../../components/Calendar";
 
 const Stat = () => {
   const menus = [
