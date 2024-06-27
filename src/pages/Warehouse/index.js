@@ -20,7 +20,7 @@ const Warehouse = () => {
           </p>
         </div>
         <button
-          className="flex gap-1 items-center justify-center 
+          className="btn h-[60px] flex gap-1 items-center justify-center 
         bg-gradient-to-b from-[#EF586B] to-[#D9112A] rounded-md"
         >
           <img src={Add} alt="" />

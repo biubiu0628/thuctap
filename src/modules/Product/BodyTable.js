@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Scan from "../../images/Product/Scan.svg";
 import Edit from "../../images/Order/Edit.svg";
-import LocationArrow from "../../images/Order/LocationArrow.svg";
-import Headphone from "../../images/Order/Headphone.svg";
+import Copy from "../../images/Product/Copy.svg";
+import Garbage from "../../images/Warehouse/Garbage.svg";
 import Button from "../../modules/Order/Button";
 
 const BodyTable = ({ isClick, status, color, colorText }) => {
@@ -51,8 +51,8 @@ const BodyTable = ({ isClick, status, color, colorText }) => {
       <td>
         <div className="flex gap-2 justify-center">
           <Button image={Edit} />
-          <Button image={LocationArrow} />
-          <Button image={Headphone} />
+          <Button image={Copy} />
+          <Button image={Garbage} />
         </div>
       </td>
     </tr>

@@ -29,7 +29,7 @@ const Account = () => {
           <span className="font-proBold">SuperShip Test!</span>
         </p>
         <button
-          className="uppercase text-[14px] font-proBold text-[#F32034] 
+          className="btn bg-white uppercase text-[14px] font-proBold text-[#F32034] 
         border-[1px] border-[#EF586B] w-[208px] h-[53px] rounded-md shadow"
         >
           Đổi mật khẩu

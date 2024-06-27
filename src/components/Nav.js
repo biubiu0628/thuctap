@@ -14,6 +14,8 @@ import Menu from "../images/Nav/menu.svg";
 import Stamp from "../images/Nav/stamp.svg";
 import Down from "../images/Nav/down.svg";
 import Up from "../images/Nav/up.svg";
+// import RightRed from "../images/Nav/rightRed.svg";
+import Right from "../images/Nav/right.svg";
 
 const Button = ({
   image,
@@ -36,19 +38,38 @@ const Button = ({
   </Link>
 );
 
-const ButtonDrop = ({ image, name, isActive, handleActive, index, path }) => (
+const ButtonDrop = ({ image, name, isActive, handleActive, index, drops }) => (
+  <div>
+    <button
+      className="w-[200px] h-[40px] rounded-2xl flex 
+    items-center gap-2 pl-8 font-pro"
+      onClick={() => handleActive(index)}
+    >
+      <div className="w-full flex justify-between pr-4 items-center">
+        <div className="flex gap-2">
+          <img src={image} alt="" />
+          <p className="text-base text-white">{name}</p>
+        </div>
+        {isActive ? <img src={Down} alt="" /> : <img src={Up} alt="" />}
+      </div>
+    </button>
+    <div className="flex flex-col gap-2 pt-1">
+      {isActive &&
+        drops.map((drop, dropIndex) => (
+          <Drop key={dropIndex} name={drop.name} path={drop.path} />
+        ))}
+    </div>
+  </div>
+);
+
+const Drop = ({ name, path }) => (
   <Link
     to={path}
-    className="w-[200px] h-[40px] rounded-2xl flex items-center gap-2 pl-8 font-pro"
-    onClick={() => handleActive(index)}
+    className={`w-[200px] h-[40px] rounded-2xl flex
+    items-center gap-2 pl-10 font-pro text-white`}
   >
-    <div className="w-full flex justify-between pr-4 items-center">
-      <div className="flex gap-2">
-        <img src={image} alt="" />
-        <p className="text-base text-white">{name}</p>
-      </div>
-      {isActive ? <img src={Down} alt="" /> : <img src={Up} alt="" />}
-    </div>
+    <img src={Right} alt="" />
+    <p className="text-base">{name}</p>
   </Link>
 );
 
@@ -74,13 +95,31 @@ const Nav = () => {
     { image: Data, imageActive: DataActive, name: "Thống kê", path: "/stat" },
   ];
 
+  const drops1 = [
+    { name: "Đối soát", path: "/doisoat" },
+    { name: "Cấu hình mặc định" },
+    { name: "Lấy trả" },
+    { name: "Yêu cầu" },
+  ];
+
+  const drops2 = [
+    { name: "API" },
+    { name: "Lịch sử thay đổi" },
+    { name: "Đối tác" },
+    { name: "Nhượng quyền" },
+    { name: "Đánh giá" },
+  ];
+
   const buttonDrops = [
-    { image: Setting, name: "Quản lý" },
-    { image: Menu, name: "Xem thêm" },
+    { image: Setting, name: "Quản lý", drops: drops1 },
+    { image: Menu, name: "Xem thêm", drops: drops2 },
   ];
 
   return (
-    <div className="fixed h-screen bg-gradient-to-b from-[#EF586B] to-[#D9112A] flex flex-col justify-between w-[260px]">
+    <div
+      className="fixed h-screen bg-gradient-to-b from-[#EF586B] 
+      to-[#D9112A] flex flex-col justify-between w-[260px]"
+    >
       <div className="flex flex-col items-center gap-3">
         <img src={Logo} alt="" className="py-5" />
         {buttons.map((button, index) => (
@@ -103,6 +142,7 @@ const Nav = () => {
             isActive={isActive === index + buttons.length}
             handleActive={handleActive}
             index={index + buttons.length}
+            drops={button.drops}
           />
         ))}
       </div>

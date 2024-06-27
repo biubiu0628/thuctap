@@ -68,7 +68,7 @@ const NavAccount = () => {
       name: "Sản phẩm",
       path: "/product",
     },
-    { image: Cal, imageActive: CalActive, name: "Hoạt động" },
+    { image: Cal, imageActive: CalActive, name: "Hoạt động", path: "/active" },
   ];
 
   return (

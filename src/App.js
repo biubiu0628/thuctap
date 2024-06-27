@@ -11,6 +11,9 @@ import Warehouse from "./pages/Warehouse/index";
 import Bank from "./pages/Bank/index";
 import Product from "./pages/Product/index";
 import CreateProduct from "./pages/CreateProduct";
+import Active from "./pages/Active";
+import Doisoat from "./pages/Doisoat";
+import Dongtien from "./pages/Doisoat/Dongtien";
 
 function App() {
   return (
@@ -45,6 +48,22 @@ function App() {
           element={
             <Layout>
               <Stat />
+            </Layout>
+          }
+        />
+        <Route
+          path="/doisoat"
+          element={
+            <Layout>
+              <Doisoat />
+            </Layout>
+          }
+        />
+        <Route
+          path="/doisoat/dongtien"
+          element={
+            <Layout>
+              <Dongtien />
             </Layout>
           }
         />
@@ -85,6 +104,14 @@ function App() {
           element={
             <LayoutAccount>
               <CreateProduct />
+            </LayoutAccount>
+          }
+        />
+        <Route
+          path="/active"
+          element={
+            <LayoutAccount>
+              <Active />
             </LayoutAccount>
           }
         />
