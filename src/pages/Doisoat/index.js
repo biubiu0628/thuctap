@@ -29,13 +29,12 @@ const Doisoat = () => {
   const [isChange, setIsChange] = useState(false);
 
   const recons = [
-    { money: "100.884.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "54.000.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "366.884.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "366.884.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "366.884.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "366.884.000", status: "Chưa đối soát", color: "#FFC91F" },
-    { money: "366.884.000", status: "Đã đối soát", color: "#27A568" },
+    { status: "Chưa chuyển", color: "#FFC91F" },
+    { status: "Chưa chuyển", color: "#FFC91F" },
+    { status: "Đã chuyển", color: "#E35F5F" },
+    { status: "Chưa chuyển", color: "#FFC91F" },
+    { status: "Đã chuyển", color: "#E35F5F" },
+    { status: "Chưa chuyển", color: "#FFC91F" },
   ];
 
   const buttons = [
@@ -54,7 +53,9 @@ const Doisoat = () => {
         <div
           className={`relative flex justify-between items-center 
           py-2 px-8 h-[44px] border-[1px] border-[#E5E5E5] ${
-            isChange ? "rounded-t-2xl bg-white" : "rounded-2xl bg-[#FBEFF2]"
+            isChange
+              ? "rounded-2xl rounded-bl-none bg-white transition-all duration-500"
+              : "rounded-2xl bg-[#FBEFF2]  transition-all duration-700"
           }`}
         >
           <p className="flex items-center gap-2">
@@ -71,8 +72,8 @@ const Doisoat = () => {
           </button>
           <div
             className={`absolute top-[42px] left-[-1px] bg-white px-2 py-4 
-            rounded-b-2xl border-[1px] border-[#E5E5E5] flex flex-col gap-2 ${
-              isChange ? "block" : "hidden"
+            rounded-b-2xl border-[1px] border-[#E5E5E5] flex flex-col gap-2 transition-all duration-500 ${
+              isChange ? "opacity-100 max-h-[300px]" : "opacity-0 max-h-0"
             }`}
           >
             <div className="flex gap-2">
@@ -80,12 +81,13 @@ const Doisoat = () => {
                 <Button key={index} index={index} text={button.text} />
               ))}
             </div>
-            <div
+            <button
               className="btn w-full h-[45px] bg-gradient-to-t from-[#D9112A] 
               to-[#EF586B] text-white font-proBold text-[16px]"
+              onClick={() => setIsChange(false)}
             >
               Xác nhận
-            </div>
+            </button>
           </div>
         </div>
         <div>
@@ -101,19 +103,27 @@ const Doisoat = () => {
                     onChange={() => setIsClick(!isClick)}
                   />
                 </th>
+                <th scope="col" className="w-[50px] text-center">
+                  TT
+                </th>
                 <th scope="col">Mã đơn</th>
-                <th scope="col">Thời gian</th>
-                <th scope="col" className="text-center">
-                  Số đơn giao thành công
+                <th scope="col" className="w-[150px] text-center">
+                  Tổng đơn
                 </th>
                 <th scope="col" className="text-center">
-                  Số đơn trả hàng
+                  Thành công
+                </th>
+                <th scope="col" className="text-center">
+                  Phần thu
+                </th>
+                <th scope="col" className="text-center">
+                  Phần phí
                 </th>
                 <th scope="col" className="text-center">
                   Thực nhận
                 </th>
                 <th scope="col" className="text-center">
-                  Trạng thái
+                  Tác vụ
                 </th>
               </tr>
             </thead>
@@ -122,7 +132,7 @@ const Doisoat = () => {
                 <BodyTable
                   key={index}
                   isClick={isClick}
-                  money={recon.money}
+                  stt={index + 1}
                   status={recon.status}
                   color={recon.color}
                 />
@@ -134,7 +144,7 @@ const Doisoat = () => {
       <div className="flex flex-col gap-4">
         <div
           className="w-[350px] h-[420px] bg-white 
-        rounded-2xl border-[1px] border-[#E5E5E5]"
+          rounded-2xl border-[1px] border-[#E5E5E5]"
         >
           <div
             className="flex justify-between 

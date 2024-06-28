@@ -35,7 +35,7 @@ const Stat = () => {
   };
 
   return (
-    <div className="h-screen pt-20">
+    <div className="pt-20">
       <div className="flex gap-2">
         {tags.map((tag, index) => (
           <Tag

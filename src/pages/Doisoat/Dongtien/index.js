@@ -9,6 +9,7 @@ import TextSort from "../../../images/Doisoat/TextSort.svg";
 import Down2 from "../../../images/Create/Down.svg";
 import BodyTable from "../../../modules/Doisoat/Dongtien/BodyTable";
 import List from "../../../modules/Doisoat/Dongtien/List";
+import DonutChart from "../../../modules/Doisoat/Dongtien/DonutChart";
 
 const Dongtien = () => {
   const tables = [
@@ -50,7 +51,7 @@ const Dongtien = () => {
         <Link
           to={"/doisoat"}
           className="size-[40px] rounded-full bg-white 
-            flex items-center justify-center shadow"
+          flex items-center justify-center shadow"
         >
           <img src={GoBack} alt="" />
         </Link>
@@ -76,7 +77,7 @@ const Dongtien = () => {
         </div>
         <div
           className="flex justify-center items-center gap-2 bg-[#F7F7F7] 
-        border-[1px] border-[#E5E5E5] px-4 rounded-2xl h-[31px]"
+          border-[1px] border-[#E5E5E5] px-4 rounded-2xl h-[31px]"
         >
           <img src={Calendar} alt="" />
           <p className="font-proMedium text-[12px] text-[#666666]">2023</p>
@@ -96,6 +97,9 @@ const Dongtien = () => {
                 (Tính theo ngày đối soát)
               </span>
             </p>
+            <div>
+              <DonutChart />
+            </div>
           </div>
           <div className="p-8 border-t-[1px]">
             <table className="w-full">
@@ -123,7 +127,7 @@ const Dongtien = () => {
             </table>
           </div>
         </div>
-        <div className="w-[500px] bg-white rounded-2xl">
+        <div className="w-[500px] bg-white rounded-2xl h-full">
           <div className="flex justify-between items-center px-8 py-4">
             <div className="flex items-center gap-2 w-[150px]">
               <img src={Folder} alt="" />

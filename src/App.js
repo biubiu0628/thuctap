@@ -14,6 +14,8 @@ import CreateProduct from "./pages/CreateProduct";
 import Active from "./pages/Active";
 import Doisoat from "./pages/Doisoat";
 import Dongtien from "./pages/Doisoat/Dongtien";
+import Chitiet from "./pages/Doisoat/Chitiet";
+import Config from "./pages/Config";
 
 function App() {
   return (
@@ -64,6 +66,22 @@ function App() {
           element={
             <Layout>
               <Dongtien />
+            </Layout>
+          }
+        />
+        <Route
+          path="/doisoat/chitiet"
+          element={
+            <Layout>
+              <Chitiet />
+            </Layout>
+          }
+        />
+        <Route
+          path="/config"
+          element={
+            <Layout>
+              <Config />
             </Layout>
           }
         />

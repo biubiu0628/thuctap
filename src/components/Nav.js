@@ -97,7 +97,7 @@ const Nav = () => {
 
   const drops1 = [
     { name: "Đối soát", path: "/doisoat" },
-    { name: "Cấu hình mặc định" },
+    { name: "Cấu hình mặc định", path: "/config" },
     { name: "Lấy trả" },
     { name: "Yêu cầu" },
   ];

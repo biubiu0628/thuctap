@@ -24,7 +24,7 @@ import Logo6 from "../../images/Create/logo6.svg";
 import Draft from "../../images/Create/Draft.svg";
 import Add from "../../images/Create/Add.svg";
 import Add2 from "../../images/Create/Add2.svg";
-import CheckBox from "../../modules/CreateOrder/CheckBox";
+import Check from "../../modules/CreateOrder/Check";
 import Image from "../../modules/CreateOrder/Image";
 import Radio from "../../modules/CreateOrder/Radio";
 import Service from "../../modules/CreateOrder/Service";
@@ -35,14 +35,32 @@ import Rating from "../../modules/CreateOrder/Rating";
 import Policy from "../../modules/CreateOrder/Policy";
 
 const Create = () => {
-  const [isCheck, setIsCheck] = useState(false);
-  const handleCheck = () => {
-    setIsCheck(!isCheck);
+  const [isCheck1, setIsCheck1] = useState(null);
+  const [isCheck2, setIsCheck2] = useState(null);
+  const [isCheck3, setIsCheck3] = useState(null);
+  const [isRules, setIsRules] = useState(false);
+
+  const handleCheck1 = (index) => {
+    setIsCheck1(index);
   };
 
-  const [isChoose, setIsChoose] = useState(-1);
+  const handleCheck2 = (index) => {
+    setIsCheck2(index);
+  };
+
+  const handleCheck3 = (index) => {
+    setIsCheck3(index);
+  };
+
+  const handleRules = () => {
+    setIsRules(!isRules);
+  };
+
+  const [isChoose, setIsChoose] = useState(new Array(7).fill(false));
   const handleChoose = (index) => {
-    setIsChoose(index);
+    const newIsChoose = [...isChoose];
+    newIsChoose[index] = !newIsChoose[index];
+    setIsChoose(newIsChoose);
   };
 
   const [isRead, setIsRead] = useState(false);
@@ -111,6 +129,35 @@ const Create = () => {
     ratingName: "rating-SuperShip",
   };
 
+  const radios1 = [
+    { name: "radio1", text: "Điền thủ công" },
+    { name: "radio1", text: "Chọn từ danh sách" },
+  ];
+
+  const radios2 = [
+    { name: "radio2", text: "Không được xem hàng" },
+    { name: "radio2", text: "Được phép thử hàng" },
+    { name: "radio2", text: "Được phép xem nhưng không được thử hàng" },
+  ];
+
+  const radios3 = [
+    { name: "radio3", text: "Người gửi trả phí" },
+    { name: "radio3", text: "Người nhận trả phí" },
+  ];
+
+  const checks1 = [
+    { text: "Giá trị cao" },
+    { text: "Dễ vỡ" },
+    { text: "Chất lỏng" },
+    { text: "Hàng lạnh" },
+  ];
+
+  const checks2 = [
+    { text: "Nguyên khối" },
+    { text: "Từ tính, Pin" },
+    { text: "Cồng kềnh" },
+  ];
+
   return (
     <div>
       <div className="flex items-center justify-between py-10">
@@ -176,7 +223,7 @@ const Create = () => {
                 <input
                   type="text"
                   id="user"
-                  placeholder="Nhập tên khách hàng..."
+                  placeholder="Họ và tên người nhận *"
                   className="focus:outline-none font-pro w-full"
                   required
                 />
@@ -192,7 +239,7 @@ const Create = () => {
                     <input
                       type="tel"
                       id="telephone"
-                      placeholder="Nhập số điện thoại..."
+                      placeholder="Số điện thoại người nhận *"
                       className="focus:outline-none font-pro w-full"
                       required
                     />
@@ -218,7 +265,7 @@ const Create = () => {
                 <input
                   type="text"
                   id="address"
-                  placeholder="Nhập địa chỉ người nhận..."
+                  placeholder="Địa chỉ chi tiết *"
                   className="focus:outline-none w-full text-[16px] font-pro"
                   required
                 />
@@ -235,19 +282,25 @@ const Create = () => {
                 </p>
               </div>
             </div>
-            {/* dropdown */}
-            <div
-              className="h-[40px] bg-[#F7F7F7] rounded-lg flex 
-              items-center justify-between px-3"
+            {/* khuvuc */}
+            <label
+              htmlFor="area"
+              className="w-full h-[40px] flex items-center justify-between 
+                gap-2 rounded-lg px-3 border-[1px] border-[#E5E5E5]"
+              onClick={() => document.getElementById("area-modal").showModal()}
             >
-              <div className="flex gap-2">
+              <div className="flex gap-2 w-full">
                 <img src={Building} alt="" />
-                <p className="font-pro">Quận / Huyện / Thị Xã / Thành Phố</p>
+                <input
+                  type="text"
+                  id="area"
+                  className="w-full focus:outline-none font-pro text-[16px]"
+                  placeholder="Chọn khu vực *"
+                />
               </div>
-              <button>
-                <img src={Down} alt="" />
-              </button>
-            </div>
+              <img src={Down} alt="" />
+            </label>
+            <dialog id="area-modal" className="modal"></dialog>
           </div>
           <hr className="py-2" />
           {/* chi tiet hang gui */}
@@ -263,14 +316,16 @@ const Create = () => {
             </div>
             {/* nut */}
             <div className="flex gap-20 p-4">
-              <div className="flex gap-2">
-                <input type="radio" name="radio" />
-                <p>Điền thủ công</p>
-              </div>
-              <div className="flex gap-2">
-                <input type="radio" name="radio" />
-                <p>Chọn từ danh sách</p>
-              </div>
+              {radios1.map((radio1, index) => (
+                <Radio
+                  key={index}
+                  name={radio1.name}
+                  text={radio1.text}
+                  isCheck={isCheck1}
+                  handleCheck={handleCheck1}
+                  index={index}
+                />
+              ))}
             </div>
             {/* Bang san pham */}
             <div
@@ -362,17 +417,28 @@ const Create = () => {
               </button>
             </div>
             {/* check box */}
-            <div className="grid grid-cols-2 px-4 py-10">
-              <div>
-                <CheckBox name="Giá trị cao" />
-                <CheckBox name="Dễ vỡ" />
-                <CheckBox name="Chất lỏng" />
-                <CheckBox name="Hàng lạnh" />
+            <div className="grid grid-cols-2 p-8">
+              <div className="flex flex-col gap-2">
+                {checks1.map((check1, index) => (
+                  <Check
+                    key={index}
+                    index={index}
+                    text={check1.text}
+                    handleChoose={handleChoose}
+                    isChoose={isChoose[index]}
+                  />
+                ))}
               </div>
-              <div>
-                <CheckBox name="Nguyên khối" />
-                <CheckBox name="Từ tính, Pin" />
-                <CheckBox name="Cồng kềnh" />
+              <div className="flex flex-col gap-2">
+                {checks2.map((check2, index) => (
+                  <Check
+                    key={index + checks1.length}
+                    index={index + checks1.length}
+                    text={check2.text}
+                    handleChoose={handleChoose}
+                    isChoose={isChoose[index + checks1.length]}
+                  />
+                ))}
               </div>
             </div>
             {/* anh hang hoa */}
@@ -408,7 +474,7 @@ const Create = () => {
                 placeholder-[#666666] font-proMedium text-[14px] rounded px-4"
               />
               <div className="flex items-center gap-1">
-                <input type="checkbox" />
+                <input type="checkbox" className="accent-[#F32034]" />
                 <p className="text-[#666666] text-[14px] font-pro">
                   Đổi / Lấy hàng về
                 </p>
@@ -416,21 +482,16 @@ const Create = () => {
             </div>
             {/* input radio */}
             <div className="flex flex-col gap-1 px-4">
-              <Radio
-                text="Không được xem hàng"
-                isCheck={isCheck}
-                handleCheck={handleCheck}
-              />
-              <Radio
-                text="Được phép thử hàng"
-                isCheck={isCheck}
-                handleCheck={handleCheck}
-              />
-              <Radio
-                text="Được phép xem nhưng không được thử hàng"
-                isCheck={isCheck}
-                handleCheck={handleCheck}
-              />
+              {radios2.map((radio2, index) => (
+                <Radio
+                  key={index}
+                  name={radio2.name}
+                  isCheck={isCheck2}
+                  handleCheck={handleCheck2}
+                  text={radio2.text}
+                  index={index}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -443,19 +504,17 @@ const Create = () => {
             {/* phuong an tra phi */}
             <p className="text-[16px] font-proBold py-3">Phương án trả phí</p>
             <div className="flex items-center gap-10">
-              <label for="nguoigui" className="flex items-center gap-2">
-                <input type="radio" name="phuongan" id="nguoigui" />
-                <p>Người gửi trả phí</p>
-              </label>
-              <div className="flex items-center gap-2">
-                <label for="nguoinhan" className="flex items-center gap-2">
-                  <input type="radio" name="phuongan" id="nguoinhan" />
-                  <p>Người nhận trả phí</p>
-                </label>
-                <div>
-                  <img src={Info} alt="" />
-                </div>
-              </div>
+              {radios3.map((radio3, index) => (
+                <Radio
+                  key={index}
+                  name={radio3.name}
+                  text={radio3.text}
+                  isCheck={isCheck3}
+                  handleCheck={handleCheck3}
+                  index={index}
+                />
+              ))}
+              <img src={Info} alt="" />
             </div>
             {/* phuong thuc van chuyen */}
             <div className="flex justify-between py-5">
@@ -528,7 +587,7 @@ const Create = () => {
           <input
             type="checkbox"
             className="accent-[#F32034] size-[16px]"
-            onChange={handleCheck}
+            onChange={handleRules}
           />
           <p className="text-[14px]">
             <span className="font-pro">Tôi đã đọc và đồng ý với </span>
@@ -552,12 +611,12 @@ const Create = () => {
           <button
             className={`uppercase gap-2 font-proBold text-[14px]  
             rounded-lg flex items-center justify-center ${
-              isCheck
+              isRules
                 ? "bg-white shadow"
                 : "text-[#B2B2B2] border-[1px] border-[#E5E5E5] disabled cursor-auto"
             }`}
           >
-            <img src={isCheck ? Add2 : Add} alt="" />
+            <img src={isRules ? Add2 : Add} alt="" />
             Tạo đơn
           </button>
         </div>
