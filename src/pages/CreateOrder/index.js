@@ -4,8 +4,6 @@ import Location from "../../images/Create/Location.svg";
 import Location2 from "../../images/Create/Location2.svg";
 import Person from "../../images/Create/Person.svg";
 import Phone from "../../images/Create/Phone.svg";
-import Building from "../../images/Create/Building.svg";
-import Down from "../../images/Create/Down.svg";
 import Box from "../../images/Create/Box.svg";
 import Question from "../../images/Create/Question.svg";
 import Up from "../../images/Header/up.svg";
@@ -33,12 +31,18 @@ import Fee from "../../modules/CreateOrder/Fee";
 import Total from "../../modules/CreateOrder/TotalValue";
 import Rating from "../../modules/CreateOrder/Rating";
 import Policy from "../../modules/CreateOrder/Policy";
+import Modal from "../../modules/CreateOrder/Modal";
+import Input from "../../modules/CreateOrder/Input";
 
 const Create = () => {
   const [isCheck1, setIsCheck1] = useState(null);
   const [isCheck2, setIsCheck2] = useState(null);
   const [isCheck3, setIsCheck3] = useState(null);
   const [isRules, setIsRules] = useState(false);
+  const [isInputPerson, setIsInputPerson] = useState(false);
+  const [isInputPhone, setIsInputPhone] = useState(false);
+  const [isInputAddress, setIsInputAddress] = useState(false);
+  const [isArea, setIsArea] = useState(false);
 
   const handleCheck1 = (index) => {
     setIsCheck1(index);
@@ -213,94 +217,32 @@ const Create = () => {
               </p>
             </div>
             {/* hoten va sdt */}
-            <div className="flex justify-between pb-4">
-              <label
-                for="user"
-                className="flex items-center gap-2 w-[400px] h-[40px] 
-                border-[1px] border-[#E5E5E5] rounded-lg px-3"
-              >
-                <img src={Person} alt="" />
-                <input
-                  type="text"
-                  id="user"
-                  placeholder="Họ và tên người nhận *"
-                  className="focus:outline-none font-pro w-full"
-                  required
-                />
-              </label>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <label
-                    for="telephone"
-                    className="flex items-center gap-2 w-[250px] h-[40px] 
-                    border-[1px] border-[#E5E5E5] rounded-lg px-3"
-                  >
-                    <img src={Phone} alt="" />
-                    <input
-                      type="tel"
-                      id="telephone"
-                      placeholder="Số điện thoại người nhận *"
-                      className="focus:outline-none font-pro w-full"
-                      required
-                    />
-                  </label>
-                  <div className="font-pro text-[#005FCC] text-[12px]">
-                    +SĐT phụ
-                  </div>
-                </div>
-                <p className="text-[12px]">
-                  <span className="font-pro">Tỷ lệ giao thành công: </span>
-                  <span className="font-proMedium text-[#188B54]">100%</span>
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-8">
+              <Input
+                id="person"
+                image={Person}
+                text="Họ và tên người nhận"
+                setIsInput={setIsInputPerson}
+                isInput={isInputPerson}
+              />
+              <Input
+                id="phone"
+                image={Phone}
+                text="Số điện thoại người nhận"
+                setIsInput={setIsInputPhone}
+                isInput={isInputPhone}
+              />
             </div>
             {/* diachi */}
-            <div className="relative pb-6">
-              <label
-                for="address"
-                className="flex items-center gap-2 border-[1px] 
-                border-[#005FCC] h-[40px] rounded-lg px-3"
-              >
-                <img src={Location2} alt="" />
-                <input
-                  type="text"
-                  id="address"
-                  placeholder="Địa chỉ chi tiết *"
-                  className="focus:outline-none w-full text-[16px] font-pro"
-                  required
-                />
-              </label>
-              <div
-                className="absolute top-[-15px] px-2 
-                h-[16px] bg-white left-4 text-center"
-              >
-                <p>
-                  <span className="text-[#005FCC] text-[12px] font-pro">
-                    Địa chỉ chi tiết
-                  </span>
-                  <span className="text-[#F32034] text-[12px] font-pro">*</span>
-                </p>
-              </div>
-            </div>
+            <Input
+              id="address"
+              image={Location2}
+              text="Địa chỉ chi tiết"
+              setIsInput={setIsInputAddress}
+              isInput={isInputAddress}
+            />
             {/* khuvuc */}
-            <label
-              htmlFor="area"
-              className="w-full h-[40px] flex items-center justify-between 
-                gap-2 rounded-lg px-3 border-[1px] border-[#E5E5E5]"
-              onClick={() => document.getElementById("area-modal").showModal()}
-            >
-              <div className="flex gap-2 w-full">
-                <img src={Building} alt="" />
-                <input
-                  type="text"
-                  id="area"
-                  className="w-full focus:outline-none font-pro text-[16px]"
-                  placeholder="Chọn khu vực *"
-                />
-              </div>
-              <img src={Down} alt="" />
-            </label>
-            <dialog id="area-modal" className="modal"></dialog>
+            <Modal isArea={isArea} setIsArea={setIsArea} />
           </div>
           <hr className="py-2" />
           {/* chi tiet hang gui */}
