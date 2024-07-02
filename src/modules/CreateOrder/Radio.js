@@ -1,9 +1,10 @@
 import React from "react";
 
-const Radio = ({ name, text, handleCheck, isCheck, index }) => (
-  <div className="flex gap-1">
+const Radio = ({ id, name, text, handleCheck, isCheck, index }) => (
+  <label htmlFor={id} className="flex gap-1">
     <input
       type="radio"
+      id={id}
       name={name}
       onChange={() => handleCheck(index)}
       checked={isCheck === index}
@@ -16,7 +17,7 @@ const Radio = ({ name, text, handleCheck, isCheck, index }) => (
     >
       {text}
     </p>
-  </div>
+  </label>
 );
 
 export default Radio;

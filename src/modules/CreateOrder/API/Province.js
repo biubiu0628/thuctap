@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import http from "../../../utils/http";
+import removeTones from "../../../utils/removeTones";
 
-const Province = ({ setProvince, onSelect }) => {
+const Province = ({ setProvince, onSelect, searchTerm }) => {
   const [provinces, setProvinces] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState(() => {
+    const savedProvince = localStorage.getItem("selectedProvince");
+    return savedProvince ? JSON.parse(savedProvince) : null;
+  });
 
   useEffect(() => {
     const fetchProvinces = async () => {
@@ -19,23 +24,37 @@ const Province = ({ setProvince, onSelect }) => {
   }, []);
 
   const handleProvince = (selectedProvince) => {
-    setProvince(selectedProvince.name);
+    setProvince({
+      code: selectedProvince.code,
+      name: selectedProvince.name,
+    });
+    localStorage.setItem("selectedProvince", JSON.stringify(selectedProvince));
+    setSelectedProvince(selectedProvince);
     onSelect();
   };
 
+  const filteredProvinces = provinces.filter((province) =>
+    removeTones(province.name?.toLowerCase() || "").includes(
+      removeTones(searchTerm.toLowerCase())
+    )
+  );
+
   return (
     <div>
-      {provinces.map((prov) => (
+      {filteredProvinces.map((prov) => (
         <button
           key={prov.code}
           onClick={() => handleProvince(prov)}
           className="group flex items-center p-3 
           gap-3 border-t-[1px] cursor-pointer w-full"
         >
-          <div
-            className="size-[20px] rounded-full border-[2px] 
-            border-[#FBEFF2] group-hover:border-red-500"
-          ></div>
+          <input
+            type="radio"
+            name="province"
+            className="accent-[#E40035] size-5"
+            checked={selectedProvince && selectedProvince.code === prov.code}
+            onChange={() => handleProvince(prov)}
+          />
           <p className="font-pro">{prov.name}</p>
         </button>
       ))}

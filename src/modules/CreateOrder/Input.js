@@ -18,16 +18,15 @@ const Input = ({ id, image, text, setIsInput, isInput }) => {
         } h-[40px] rounded-lg px-3 w-full`}
       >
         <img src={image} alt="" />
-        <div className="placeholder-container">
-          <input
-            type="text"
-            id={id}
-            placeholder={`${text} *`}
-            onChange={handleInput}
-            className="focus:outline-none w-full text-[16px] font-pro placeholder:font-pro"
-            required
-          />
-        </div>
+        <input
+          type="text"
+          id={id}
+          placeholder={`${text} *`}
+          onChange={handleInput}
+          className="focus:outline-none w-full 
+          text-[16px] font-pro placeholder:font-pro"
+          required
+        />
       </label>
       <div
         className={`absolute top-[-15px] px-2 h-[16px] bg-white left-4 text-center ${

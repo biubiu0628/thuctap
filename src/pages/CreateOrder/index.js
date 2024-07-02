@@ -7,10 +7,6 @@ import Phone from "../../images/Create/Phone.svg";
 import Box from "../../images/Create/Box.svg";
 import Question from "../../images/Create/Question.svg";
 import Up from "../../images/Header/up.svg";
-import Camera from "../../images/Create/Camera.svg";
-import Image1 from "../../images/Create/image1.svg";
-import Image2 from "../../images/Create/image2.svg";
-import Image3 from "../../images/Create/image3.svg";
 import Money from "../../images/Create/Money.svg";
 import Info from "../../images/Create/Info.svg";
 import Logo1 from "../../images/Create/logo1.svg";
@@ -23,7 +19,7 @@ import Draft from "../../images/Create/Draft.svg";
 import Add from "../../images/Create/Add.svg";
 import Add2 from "../../images/Create/Add2.svg";
 import Check from "../../modules/CreateOrder/Check";
-import Image from "../../modules/CreateOrder/Image";
+import FileImage from "../../modules/CreateOrder/FileImage";
 import Radio from "../../modules/CreateOrder/Radio";
 import Service from "../../modules/CreateOrder/Service";
 import Transport from "../../modules/CreateOrder/Transport";
@@ -67,7 +63,10 @@ const Create = () => {
     setIsChoose(newIsChoose);
   };
 
-  const [isRead, setIsRead] = useState(false);
+  const [isSelect, setIsSelect] = useState(null);
+  const handleSelect = (index) => {
+    setIsSelect(index);
+  };
 
   const TransportsThamKhao = [
     {
@@ -391,22 +390,7 @@ const Create = () => {
                   Xóa tất cả
                 </button>
               </div>
-              <div className="flex gap-2 p-4">
-                <div
-                  className="w-[100px] h-[86px] border-[2px] border-[#D6D6D6] 
-                  border-dashed rounded flex items-center justify-center"
-                >
-                  <button
-                    className="size-[40px] rounded-full shadow 
-                    flex justify-center items-center"
-                  >
-                    <img src={Camera} alt="" />
-                  </button>
-                </div>
-                <Image image={Image1} />
-                <Image image={Image2} />
-                <Image image={Image3} />
-              </div>
+              <FileImage />
             </div>
             {/* ma don */}
             <div className="flex items-center justify-between p-4">
@@ -476,8 +460,8 @@ const Create = () => {
                 logo={TransportGoiY.logo}
                 price={TransportGoiY.price}
                 number={TransportGoiY.number}
-                isChoose={isChoose === -1}
-                handleChoose={() => handleChoose(-1)}
+                isSelect={isSelect === -1}
+                handleSelect={() => handleSelect(-1)}
               >
                 <Rating name={TransportGoiY.ratingName} />
               </Transport>
@@ -493,8 +477,8 @@ const Create = () => {
                   logo={transport.logo}
                   price={transport.price}
                   number={transport.number}
-                  isChoose={isChoose === index}
-                  handleChoose={() => handleChoose(index)}
+                  isSelect={isSelect === index}
+                  handleSelect={() => handleSelect(index)}
                 >
                   <Rating name={transport.ratingName} />
                 </Transport>
@@ -535,12 +519,12 @@ const Create = () => {
             <span className="font-pro">Tôi đã đọc và đồng ý với </span>
             <span
               className="text-[#CB2D38] font-proMedium cursor-pointer"
-              onClick={() => setIsRead(!isRead)}
+              onClick={() => document.getElementById("policy").showModal()}
             >
               Điều khoản & quy định
             </span>
           </p>
-          <Policy isRead={isRead} />
+          <Policy />
         </div>
         <div className="w-[459.25px] grid grid-cols-2 h-[53px] gap-2 mb-8">
           <button

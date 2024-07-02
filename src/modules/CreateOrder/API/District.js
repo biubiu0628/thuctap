@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import http from "../../../utils/http";
+import removeTones from "../../../utils/removeTones";
 
-const District = ({ setDistrict }) => {
+const District = ({ setDistrict, provinceCode, onSelect, searchTerm }) => {
   const [districts, setDistricts] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState(() => {
+    const savedDistrict = localStorage.getItem("selectedDistrict");
+    return savedDistrict ? JSON.parse(savedDistrict) : null;
+  });
 
   useEffect(() => {
     const fetchDistrict = async () => {
       try {
-        const response = await http.get("/v1/partner/areas/district");
+        const response = await http.get(
+          `/v1/partner/areas/district?province=${provinceCode}`
+        );
         console.log(response);
         setDistricts(response.data.results);
       } catch (error) {
@@ -15,26 +22,43 @@ const District = ({ setDistrict }) => {
       }
     };
 
-    fetchDistrict();
-  }, []);
+    if (provinceCode) {
+      fetchDistrict();
+    }
+  }, [provinceCode]);
 
   const handleDistrict = (selectedDistrict) => {
-    setDistrict(selectedDistrict.name);
+    setDistrict({
+      code: selectedDistrict.code,
+      name: selectedDistrict.name,
+    });
+    localStorage.setItem("selectedDistrict", JSON.stringify(selectedDistrict));
+    setSelectedDistrict(selectedDistrict);
+    onSelect();
   };
+
+  const filteredDistricts = districts.filter((district) =>
+    removeTones(district.name?.toLowerCase() || "").includes(
+      removeTones(searchTerm.toLowerCase())
+    )
+  );
 
   return (
     <div>
-      {districts.map((dis) => (
+      {filteredDistricts.map((dis) => (
         <button
           key={dis.code}
           onClick={() => handleDistrict(dis)}
           className="group flex items-center p-3 
           gap-3 border-t-[1px] cursor-pointer w-full"
         >
-          <div
-            className="size-[20px] rounded-full border-[2px] 
-            border-[#FBEFF2] group-hover:border-red-500"
-          ></div>
+          <input
+            type="radio"
+            name="district"
+            className="accent-[#E40035] size-5"
+            checked={selectedDistrict && selectedDistrict.code === dis.code}
+            onChange={() => handleDistrict(dis)}
+          />
           <p className="font-pro">{dis.name}</p>
         </button>
       ))}

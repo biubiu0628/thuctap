@@ -3,8 +3,8 @@ import React from "react";
 const Transport = ({
   name,
   color,
-  isChoose,
-  handleChoose,
+  isSelect,
+  handleSelect,
   status,
   logo,
   rate,
@@ -15,8 +15,8 @@ const Transport = ({
   return (
     <div
       className={`w-full flex flex-col border-[1.5px] rounded-lg my-2 cursor-pointer
-      ${isChoose ? "border-[#F32034]" : "border-[#E5E5E5]"} hover:bg-[#F2F2F2]`}
-      onClick={handleChoose}
+      ${isSelect ? "border-[#F32034]" : "border-[#E5E5E5]"} hover:bg-[#F2F2F2]`}
+      onClick={handleSelect}
     >
       <div
         className="w-[50px] h-[14px] rounded-r-full rounded-tl-full uppercase 

@@ -1,34 +1,57 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Search from "../../images/Header/search.svg";
 import Building from "../../images/Create/Building.svg";
 import Down from "../../images/Create/Down.svg";
+import GoBack from "../../images/Create/GoBack.svg";
 import Province from "./API/Province";
 import District from "./API/District";
+import Commune from "./API/Commune";
 
 const Modal = ({ isArea, setIsArea }) => {
-  const [province, setProvince] = useState({
-    code: "",
-    name: "",
-  });
+  const [province, setProvince] = useState({ code: "", name: "" });
 
-  const [district, setDistrict] = useState({
-    code: "",
-    name: "",
-  });
+  const [district, setDistrict] = useState({ code: "", name: "" });
+
+  const [commune, setCommune] = useState({ code: "", name: "" });
 
   const [step, setStep] = useState(1); // 1 tinh, 2 huyen, 3 xa
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const provinceRef = useRef(null);
+  const districtRef = useRef(null);
+  const communeRef = useRef(null);
+
+  const scrollToRef = (ref) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+  };
+
   const handleProvince = (selectedProvince) => {
-    setProvince({ name: selectedProvince });
-    setIsArea(selectedProvince.trim() !== "");
-    setDistrict({
-      code: "",
-      name: "",
-    });
+    setProvince(selectedProvince);
+    setIsArea(selectedProvince.name.trim() !== "");
+    setDistrict({ code: "", name: "" });
+    setCommune({ code: "", name: "" });
+    setSearchTerm("");
+    scrollToRef(districtRef);
   };
 
   const handleDistrict = (selectedDistrict) => {
-    setDistrict({ name: selectedDistrict });
+    setDistrict(selectedDistrict);
+    setSearchTerm("");
+    scrollToRef(communeRef);
+  };
+
+  const handleCommune = (selectedCommune) => {
+    setCommune(selectedCommune);
+    setSearchTerm("");
+    document.getElementById("area-modal").close();
+    setStep(1);
   };
 
   return (
@@ -47,7 +70,9 @@ const Modal = ({ isArea, setIsArea }) => {
             id="area"
             className="w-full focus:outline-none font-pro text-[16px]"
             placeholder="Chọn khu vực *"
-            value={province.name}
+            value={`${province.name}${
+              district.name ? `, ${district.name}` : ""
+            }${commune.name ? `, ${commune.name}` : ""}`}
           />
         </div>
         <img src={Down} alt="" />
@@ -66,13 +91,25 @@ const Modal = ({ isArea, setIsArea }) => {
         <div className="modal-box pt-0 flex flex-col">
           <div className="h-full bg-white pt-6 max-w-full">
             <div className="flex items-center pb-3">
+              <button
+                className={`size-[28px] flex items-center 
+                justify-center rounded-full shadow ${
+                  step > 1 ? "block" : "hidden"
+                }`}
+                onClick={() => setStep(step - 1)}
+              >
+                <img src={GoBack} alt="" />
+              </button>
               <p
-                className="font-proBold text-[20px] 
-                flex-grow text-center pl-6"
+                className={`font-proBold text-[20px] 
+                flex-grow text-center ${step === 1 ? "pl-6" : "pr-6"}`}
               >
                 Chọn Khu Vực
               </p>
-              <form method="dialog">
+              <form
+                method="dialog"
+                className={`${step === 1 ? "block" : "hidden"}`}
+              >
                 <button className="flex">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -104,19 +141,40 @@ const Modal = ({ isArea, setIsArea }) => {
                   placeholder="Tìm kiếm"
                   className="focus:outline-none 
                 bg-[#FBEFF2] text-[16px] font-proBold"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </label>
             </div>
           </div>
-          <div className="overflow-auto">
+          <div className="overflow-auto h-[600px]">
             {step === 1 && (
               <Province
                 setProvince={handleProvince}
                 onSelect={() => setStep(2)}
+                searchTerm={searchTerm}
+                ref={provinceRef}
               />
             )}
 
-            {step === 2 && <div>Day la khu vuc chon huyen</div>}
+            {step === 2 && (
+              <District
+                provinceCode={province.code}
+                setDistrict={handleDistrict}
+                onSelect={() => setStep(3)}
+                searchTerm={searchTerm}
+                ref={districtRef}
+              />
+            )}
+
+            {step === 3 && (
+              <Commune
+                districtCode={district.code}
+                setCommune={handleCommune}
+                searchTerm={searchTerm}
+                ref={communeRef}
+              />
+            )}
           </div>
         </div>
       </dialog>
