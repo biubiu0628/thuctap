@@ -9,42 +9,56 @@ import Commune from "./API/Commune";
 
 const Modal = ({ isArea, setIsArea }) => {
   const [province, setProvince] = useState({ code: "", name: "" });
-
   const [district, setDistrict] = useState({ code: "", name: "" });
-
   const [commune, setCommune] = useState({ code: "", name: "" });
-
   const [step, setStep] = useState(1); // 1 tinh, 2 huyen, 3 xa
-
   const [searchTerm, setSearchTerm] = useState("");
-
   const provinceRef = useRef(null);
   const districtRef = useRef(null);
   const communeRef = useRef(null);
 
-  const scrollToRef = (ref) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({
+  const scrollProvince = () => {
+    if (provinceRef.current) {
+      provinceRef.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
-        inline: "center",
+      });
+    }
+  };
+
+  const scrollDistrict = () => {
+    if (districtRef.current) {
+      districtRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
+  const scrollCommune = () => {
+    if (communeRef.current) {
+      communeRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
     }
   };
 
   const handleProvince = (selectedProvince) => {
     setProvince(selectedProvince);
-    setIsArea(selectedProvince.name.trim() !== "");
+    setIsArea(selectedProvince.name !== "");
     setDistrict({ code: "", name: "" });
     setCommune({ code: "", name: "" });
     setSearchTerm("");
-    scrollToRef(districtRef);
+    scrollDistrict();
+    console.log(provinceRef.current);
   };
 
   const handleDistrict = (selectedDistrict) => {
     setDistrict(selectedDistrict);
     setSearchTerm("");
-    scrollToRef(communeRef);
+    scrollCommune();
+    console.log(districtRef.current);
   };
 
   const handleCommune = (selectedCommune) => {
@@ -52,6 +66,7 @@ const Modal = ({ isArea, setIsArea }) => {
     setSearchTerm("");
     document.getElementById("area-modal").close();
     setStep(1);
+    console.log(communeRef.current);
   };
 
   return (
@@ -61,7 +76,10 @@ const Modal = ({ isArea, setIsArea }) => {
         className={`w-full h-[40px] flex items-center 
         justify-between gap-2 rounded-lg px-3 border-[1px]
         ${isArea ? "border-[#005FCC]" : ""}`}
-        onClick={() => document.getElementById("area-modal").showModal()}
+        onClick={() => {
+          document.getElementById("area-modal").showModal();
+          scrollProvince();
+        }}
       >
         <div className="flex gap-2 w-full">
           <img src={Building} alt="" />
@@ -96,7 +114,19 @@ const Modal = ({ isArea, setIsArea }) => {
                 justify-center rounded-full shadow ${
                   step > 1 ? "block" : "hidden"
                 }`}
-                onClick={() => setStep(step - 1)}
+                onClick={() => {
+                  const newStep = step - 1;
+                  setStep(newStep);
+                  if (newStep === 2) {
+                    setTimeout(() => {
+                      scrollDistrict();
+                    }, 300);
+                  } else if (newStep === 1) {
+                    setTimeout(() => {
+                      scrollProvince();
+                    }, 300);
+                  }
+                }}
               >
                 <img src={GoBack} alt="" />
               </button>
@@ -153,7 +183,8 @@ const Modal = ({ isArea, setIsArea }) => {
                 setProvince={handleProvince}
                 onSelect={() => setStep(2)}
                 searchTerm={searchTerm}
-                ref={provinceRef}
+                provinceRef={provinceRef}
+                scrollDistrict={scrollDistrict}
               />
             )}
 
@@ -163,7 +194,8 @@ const Modal = ({ isArea, setIsArea }) => {
                 setDistrict={handleDistrict}
                 onSelect={() => setStep(3)}
                 searchTerm={searchTerm}
-                ref={districtRef}
+                districtRef={districtRef}
+                scrollCommune={scrollCommune}
               />
             )}
 
@@ -172,7 +204,7 @@ const Modal = ({ isArea, setIsArea }) => {
                 districtCode={district.code}
                 setCommune={handleCommune}
                 searchTerm={searchTerm}
-                ref={communeRef}
+                communeRef={communeRef}
               />
             )}
           </div>

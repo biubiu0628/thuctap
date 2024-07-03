@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import http from "../../../utils/http";
 import removeTones from "../../../utils/removeTones";
 
-const District = ({ setDistrict, provinceCode, onSelect, searchTerm }) => {
+const District = ({
+  setDistrict,
+  provinceCode,
+  onSelect,
+  searchTerm,
+  districtRef,
+  scrollCommune,
+}) => {
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState(() => {
     const savedDistrict = localStorage.getItem("selectedDistrict");
@@ -35,6 +42,9 @@ const District = ({ setDistrict, provinceCode, onSelect, searchTerm }) => {
     localStorage.setItem("selectedDistrict", JSON.stringify(selectedDistrict));
     setSelectedDistrict(selectedDistrict);
     onSelect();
+    setTimeout(() => {
+      scrollCommune();
+    }, 300);
   };
 
   const filteredDistricts = districts.filter((district) =>
@@ -51,6 +61,11 @@ const District = ({ setDistrict, provinceCode, onSelect, searchTerm }) => {
           onClick={() => handleDistrict(dis)}
           className="group flex items-center p-3 
           gap-3 border-t-[1px] cursor-pointer w-full"
+          ref={
+            selectedDistrict && selectedDistrict.code === dis.code
+              ? districtRef
+              : null
+          }
         >
           <input
             type="radio"

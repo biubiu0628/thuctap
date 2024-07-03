@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import http from "../../../utils/http";
 import removeTones from "../../../utils/removeTones";
 
-const Province = ({ setProvince, onSelect, searchTerm }) => {
+const Province = ({
+  setProvince,
+  onSelect,
+  searchTerm,
+  provinceRef,
+  scrollDistrict,
+}) => {
   const [provinces, setProvinces] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState(() => {
     const savedProvince = localStorage.getItem("selectedProvince");
@@ -31,6 +37,9 @@ const Province = ({ setProvince, onSelect, searchTerm }) => {
     localStorage.setItem("selectedProvince", JSON.stringify(selectedProvince));
     setSelectedProvince(selectedProvince);
     onSelect();
+    setTimeout(() => {
+      scrollDistrict();
+    }, 300);
   };
 
   const filteredProvinces = provinces.filter((province) =>
@@ -47,6 +56,11 @@ const Province = ({ setProvince, onSelect, searchTerm }) => {
           onClick={() => handleProvince(prov)}
           className="group flex items-center p-3 
           gap-3 border-t-[1px] cursor-pointer w-full"
+          ref={
+            selectedProvince && selectedProvince.code === prov.code
+              ? provinceRef
+              : null
+          }
         >
           <input
             type="radio"

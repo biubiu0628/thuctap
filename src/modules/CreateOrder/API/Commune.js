@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import http from "../../../utils/http";
 import removeTones from "../../../utils/removeTones";
 
-const Commune = ({ setCommune, districtCode, searchTerm }) => {
+const Commune = ({ setCommune, districtCode, searchTerm, communeRef }) => {
   const [communes, setCommunes] = useState([]);
   const [selectedCommune, setSelectedCommune] = useState(() => {
     const savedCommune = localStorage.getItem("selectedCommune");
@@ -50,6 +50,11 @@ const Commune = ({ setCommune, districtCode, searchTerm }) => {
           onClick={() => handleCommune(com)}
           className="group flex items-center p-3 
           gap-3 border-t-[1px] cursor-pointer w-full"
+          ref={
+            selectedCommune && selectedCommune.code === com.code
+              ? communeRef
+              : null
+          }
         >
           <input
             type="radio"

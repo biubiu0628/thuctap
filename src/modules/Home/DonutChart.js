@@ -1,6 +1,21 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
+const Legend = ({ color, text, number }) => {
+  return (
+    <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center">
+        <div
+          className="size-[10px] rounded-full mr-2"
+          style={{ backgroundColor: color }}
+        ></div>
+        <p className="mr-4">{text}</p>
+      </div>
+      <p style={{ color: color }}>{number}</p>
+    </div>
+  );
+};
+
 const DonutChart = () => {
   const series = [66, 12, 11, 30, 2, 1, 5, 6, 26, 3, 13, 0, 0, 0];
   const options = {
@@ -21,7 +36,7 @@ const DonutChart = () => {
       "Giao 1 phần",
     ],
     legend: {
-      show: true,
+      show: false,
     },
     dataLabels: {
       enabled: false,
@@ -51,8 +66,30 @@ const DonutChart = () => {
     },
   };
 
+  const legends1 = series
+    .slice(0, 7)
+    .map((value, index) => (
+      <Legend
+        key={index}
+        color={options.colors[index]}
+        text={options.labels[index]}
+        number={value}
+      />
+    ));
+
+  const legends2 = series
+    .slice(7)
+    .map((value, index) => (
+      <Legend
+        key={index + 7}
+        color={options.colors[index + 7]}
+        text={options.labels[index + 7]}
+        number={value}
+      />
+    ));
+
   return (
-    <div className="app flex flex-col">
+    <div className="app flex items-center justify-between pt-6">
       <Chart
         options={options}
         series={series}
@@ -60,6 +97,10 @@ const DonutChart = () => {
         width="100%"
         height={220}
       />
+      <div className="flex gap-20 pr-8">
+        <div>{legends1}</div>
+        <div>{legends2}</div>
+      </div>
     </div>
   );
 };

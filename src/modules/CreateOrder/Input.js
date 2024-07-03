@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ id, image, text, setIsInput, isInput }) => {
+const Input = ({ props, id, image, text, setIsInput, isInput }) => {
   const handleInput = (e) => {
     if (e.target.value.trim() !== "") {
       setIsInput(true);
@@ -10,7 +10,7 @@ const Input = ({ id, image, text, setIsInput, isInput }) => {
   };
 
   return (
-    <div className="relative pb-6">
+    <div className={`relative pb-6 ${props}`}>
       <label
         htmlFor={id}
         className={`flex items-center gap-2 border-[1px] ${
