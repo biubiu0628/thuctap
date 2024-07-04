@@ -407,7 +407,7 @@ const Create = () => {
               </div>
             </div>
             {/* input radio */}
-            <div className="flex flex-col gap-1 px-4">
+            <div className="flex flex-col gap-2 px-4">
               {radios2.map((radio2, index) => (
                 <Radio
                   key={index}

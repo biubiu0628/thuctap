@@ -35,7 +35,10 @@ const FileImage = () => {
         />
       </div>
       {selectedImage.map((image, index) => (
-        <div key={index} className="relative w-[100px] h-[80px]">
+        <div
+          key={index}
+          className="relative w-[100px] h-[80px] border-[1px] rounded-md"
+        >
           <button
             className="absolute top-1 right-1 size-5 rounded-full bg-gray-300 
             flex items-center justify-center hover:bg-white"

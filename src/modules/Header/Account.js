@@ -27,7 +27,7 @@ const Menu = ({ image, children, childtext, button }) => (
 const Account = () => {
   return (
     <div className="dropdown-content menu top-10 w-[231px] h-full rounded-xl z-10 block">
-      <div className="pb-1 bg-[#F2F2F2]">
+      <div className="pb-1 bg-[#F2F2F2] rounded-t-xl w-[231px]">
         <Menu
           image={ID}
           childtext={
@@ -67,7 +67,7 @@ const Account = () => {
           }
         />
       </div>
-      <div className="pb-1 bg-[#F2F2F2]">
+      <div className="pb-1 bg-[#F2F2F2] w-[231px]">
         <Menu
           image={House}
           childtext={
@@ -101,7 +101,7 @@ const Account = () => {
           }
         />
       </div>
-      <div className="pb-1 bg-[#F2F2F2]">
+      <div className="pb-1 bg-[#F2F2F2] w-[231px]">
         <Menu
           image={Eye}
           childtext={<p className="text-[12px] font-pro">Giao diện</p>}
@@ -121,11 +121,13 @@ const Account = () => {
           }
         />
       </div>
-      <Menu
-        image={API}
-        childtext={<p className="text-[12px] font-pro">Đăng xuất</p>}
-        children="rounded-b-xl"
-      />
+      <Link to="/login">
+        <Menu
+          image={API}
+          childtext={<p className="text-[12px] font-pro">Đăng xuất</p>}
+          children="rounded-b-xl"
+        />
+      </Link>
     </div>
   );
 };

@@ -99,15 +99,15 @@ const Nav = () => {
     { name: "Đối soát", path: "/doisoat" },
     { name: "Cấu hình mặc định", path: "/config" },
     { name: "Lấy trả" },
-    { name: "Yêu cầu" },
+    { name: "Yêu cầu", path: "/request" },
   ];
 
   const drops2 = [
     { name: "API" },
-    { name: "Lịch sử thay đổi" },
+    { name: "Lịch sử thay đổi", path: "/history" },
     { name: "Đối tác" },
     { name: "Nhượng quyền" },
-    { name: "Đánh giá" },
+    { name: "Đánh giá", path: "/rating" },
   ];
 
   const buttonDrops = [

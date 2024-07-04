@@ -1,9 +1,30 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
+const Legend = ({ color, text, number }) => (
+  <div className="w-[200px] flex items-center justify-between py-1">
+    <div className="flex items-center gap-1">
+      <div
+        className="size-[10px] rounded-full"
+        style={{ backgroundColor: color }}
+      ></div>
+      <p className="font-pro text-[14px]">{text}</p>
+    </div>
+    <p className="font-proBold text-[16px]" style={{ color: color }}>
+      {number}
+    </p>
+  </div>
+);
+
 const DonutStatus = () => {
   const series = [66, 12, 11, 30, 2, 1, 5, 6, 26, 3, 13, 0, 0, 0];
   const options = {
+    legend: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
     labels: [
       "Đang giao",
       "Chờ lấy",
@@ -20,12 +41,6 @@ const DonutStatus = () => {
       "Lưu kho",
       "Giao 1 phần",
     ],
-    legend: {
-      show: true,
-    },
-    dataLabels: {
-      enabled: false,
-    },
     colors: [
       "#ED6E05",
       "#F7A200",
@@ -51,8 +66,30 @@ const DonutStatus = () => {
     },
   };
 
+  const legends1 = series
+    .slice(0, 7)
+    .map((value, index) => (
+      <Legend
+        key={index}
+        color={options.colors[index]}
+        text={options.labels[index]}
+        number={value}
+      />
+    ));
+
+  const legends2 = series
+    .slice(7)
+    .map((value, index) => (
+      <Legend
+        key={index + 7}
+        color={options.colors[index + 7]}
+        text={options.labels[index + 7]}
+        number={value}
+      />
+    ));
+
   return (
-    <div className="app flex flex-col">
+    <div className="app flex pb-4">
       <Chart
         options={options}
         series={series}
@@ -60,6 +97,10 @@ const DonutStatus = () => {
         width="100%"
         height={220}
       />
+      <div className="flex w-full justify-between pr-10 pl-20">
+        <div>{legends1}</div>
+        <div>{legends2}</div>
+      </div>
     </div>
   );
 };

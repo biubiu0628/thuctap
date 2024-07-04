@@ -93,7 +93,6 @@ const Account = () => {
             <Calendar props="bg-white border-[1px] pt-2 rounded-xl top-16" />
           }
         />
-
         <DropDown image={ImageGT} alt="" text="Nam" children={<GioiTinh />} />
       </div>
       <div className="flex justify-end gap-2">

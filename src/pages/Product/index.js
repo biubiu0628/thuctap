@@ -24,7 +24,7 @@ const Product = () => {
   return (
     <div>
       {/* tag menu */}
-      <div className="flex justify-between py-6 mt-10">
+      <div className="flex justify-between items-center py-6 mt-10">
         <div className="flex gap-2">
           <Tag
             name="Tất cả"

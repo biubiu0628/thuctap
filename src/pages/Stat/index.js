@@ -71,15 +71,15 @@ const Stat = () => {
           </div>
           {/* chart */}
           {isActived !== null && (
-            <Table>
+            <div>
               {tags[isActived].name === "Tỷ lệ giao" ? (
-                <div>
+                <Table name="Tỷ lệ giao hàng" date="30 ngày trước">
                   <DonutPercent />
                   <Postage name="Số đơn trả hàng" number="23" />
                   <Postage name="Số đơn giao hàng thành công" number="35" />
-                </div>
+                </Table>
               ) : tags[isActived].name === "Tiền hàng" ? (
-                <div>
+                <Table name="Tiền hàng" date="Tháng 10 năm 2023">
                   <DonutMoney />
                   <Postage
                     name="Cước phí người gửi trả"
@@ -91,15 +91,15 @@ const Stat = () => {
                     number="22.000"
                     text="đ"
                   />
-                </div>
+                </Table>
               ) : tags[isActived].name === "Trạng thái đơn" ? (
-                <div>
+                <Table name="Trạng thái đơn hàng" date="Tháng 10 năm 2023">
                   <DonutStatus />
-                </div>
+                </Table>
               ) : (
-                <div></div>
+                <Table></Table>
               )}
-            </Table>
+            </div>
           )}
         </div>
         {/* list */}

@@ -16,6 +16,11 @@ import Doisoat from "./pages/Doisoat";
 import Dongtien from "./pages/Doisoat/Dongtien";
 import Chitiet from "./pages/Doisoat/Chitiet";
 import Config from "./pages/Config";
+import Request from "./pages/Request";
+import History from "./pages/History";
+import Rating from "./pages/Rating";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -86,6 +91,30 @@ function App() {
           }
         />
         <Route
+          path="/request"
+          element={
+            <Layout>
+              <Request />
+            </Layout>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <Layout>
+              <History />
+            </Layout>
+          }
+        />
+        <Route
+          path="/rating"
+          element={
+            <Layout>
+              <Rating />
+            </Layout>
+          }
+        />
+        <Route
           path="/account"
           element={
             <LayoutAccount>
@@ -133,6 +162,8 @@ function App() {
             </LayoutAccount>
           }
         />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
