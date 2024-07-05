@@ -15,7 +15,7 @@ const Input = ({ props, id, image, text, setIsInput, isInput }) => {
         htmlFor={id}
         className={`flex items-center gap-2 border-[1px] ${
           isInput ? "border-[#005FCC]" : ""
-        } h-[40px] rounded-lg px-3 w-full`}
+        } h-[50px] rounded-lg px-3 w-full`}
       >
         <img src={image} alt="" />
         <input

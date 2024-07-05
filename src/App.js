@@ -19,8 +19,10 @@ import Config from "./pages/Config";
 import Request from "./pages/Request";
 import History from "./pages/History";
 import Rating from "./pages/Rating";
-import Register from "./components/Register";
 import Login from "./components/Login";
+import Forget from "./components/Forget";
+import Register from "./components/Register";
+import OTP from "./components/OTP";
 
 function App() {
   return (
@@ -162,7 +164,9 @@ function App() {
             </LayoutAccount>
           }
         />
+        <Route path="/otp" element={<OTP />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forget" element={<Forget />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </Router>

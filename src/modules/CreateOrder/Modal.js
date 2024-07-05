@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import Search from "../../images/Header/search.svg";
-import Building from "../../images/Create/Building.svg";
 import Down from "../../images/Create/Down.svg";
 import GoBack from "../../images/Create/GoBack.svg";
+import Building from "../../images/Create/Building.svg";
 import Province from "./API/Province";
 import District from "./API/District";
 import Commune from "./API/Commune";
@@ -73,7 +73,7 @@ const Modal = ({ isArea, setIsArea }) => {
     <div className="relative">
       <label
         htmlFor="area"
-        className={`w-full h-[40px] flex items-center 
+        className={`w-full h-[50px] flex items-center 
         justify-between gap-2 rounded-lg px-3 border-[1px]
         ${isArea ? "border-[#005FCC]" : ""}`}
         onClick={() => {
@@ -81,8 +81,10 @@ const Modal = ({ isArea, setIsArea }) => {
           scrollProvince();
         }}
       >
-        <div className="flex gap-2 w-full">
-          <img src={Building} alt="" />
+        <div className="flex items-center gap-2 w-full">
+          <div className="size-[20px] flex items-center justify-center">
+            <img src={Building} alt="" />
+          </div>
           <input
             type="text"
             id="area"
