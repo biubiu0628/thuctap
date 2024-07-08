@@ -23,6 +23,7 @@ import Login from "./components/Login";
 import Forget from "./components/Forget";
 import Register from "./components/Register";
 import OTP from "./components/OTP";
+import ChangePass from "./components/ChangePass";
 
 function App() {
   return (
@@ -168,6 +169,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forget" element={<Forget />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/changepass" element={<ChangePass />} />
       </Routes>
     </Router>
   );

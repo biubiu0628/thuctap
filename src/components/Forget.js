@@ -38,8 +38,9 @@ const Forget = () => {
           <div className="w-[400px] flex flex-col gap-2 py-4">
             <Link
               to="/otp"
-              className="uppercase h-[50px] flex items-center justify-center rounded-md 
-            font-proBold text-[14px] text-white bg-gradient-to-r from-[#EF586B] to-[#D9112A]"
+              className="uppercase h-[50px] flex items-center 
+              justify-center rounded-md font-proBold text-[14px] 
+              text-white bg-gradient-to-r from-[#EF586B] to-[#D9112A]"
             >
               Tiếp tục
             </Link>
