@@ -16,8 +16,6 @@ import Logo4 from "../../images/Create/logo4.svg";
 import Logo5 from "../../images/Create/logo5.svg";
 import Logo6 from "../../images/Create/logo6.svg";
 import Draft from "../../images/Create/Draft.svg";
-import Add from "../../images/Create/Add.svg";
-import Add2 from "../../images/Create/Add2.svg";
 import Check from "../../modules/CreateOrder/Check";
 import FileImage from "../../modules/CreateOrder/FileImage";
 import Radio from "../../modules/CreateOrder/Radio";
@@ -26,9 +24,10 @@ import Transport from "../../modules/CreateOrder/Transport";
 import Fee from "../../modules/CreateOrder/Fee";
 import Total from "../../modules/CreateOrder/TotalValue";
 import Rating from "../../modules/CreateOrder/Rating";
-import Policy from "../../modules/CreateOrder/Policy";
 import Modal from "../../modules/CreateOrder/Modal";
 import Input from "../../modules/CreateOrder/Input";
+import Policy from "../../modules/CreateOrder/Drawer/Policy";
+import Complete from "../../modules/CreateOrder/Drawer/Complete";
 
 const Create = () => {
   const [isCheck1, setIsCheck1] = useState(null);
@@ -515,16 +514,12 @@ const Create = () => {
             className="accent-[#F32034] size-[16px]"
             onChange={handleRules}
           />
-          <p className="text-[14px]">
-            <span className="font-pro">Tôi đã đọc và đồng ý với </span>
-            <span
-              className="text-[#CB2D38] font-proMedium cursor-pointer"
-              onClick={() => document.getElementById("policy").showModal()}
-            >
-              Điều khoản & quy định
+          <p className="flex items-center text-[14px]">
+            <span className="font-pro w-[240px]">
+              Tôi đã đọc và đồng ý với{" "}
             </span>
+            <Policy />
           </p>
-          <Policy />
         </div>
         <div className="w-[459.25px] grid grid-cols-2 h-[53px] gap-2 mb-8">
           <button
@@ -534,17 +529,7 @@ const Create = () => {
             <img src={Draft} alt="" />
             Lưu nháp
           </button>
-          <button
-            className={`uppercase gap-2 font-proBold text-[14px]  
-            rounded-lg flex items-center justify-center ${
-              isRules
-                ? "bg-white shadow"
-                : "text-[#B2B2B2] border-[1px] border-[#E5E5E5] disabled cursor-auto"
-            }`}
-          >
-            <img src={isRules ? Add2 : Add} alt="" />
-            Tạo đơn
-          </button>
+          <Complete isRules={isRules} />
         </div>
       </div>
     </div>

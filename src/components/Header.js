@@ -1,12 +1,12 @@
 import React from "react";
 import Search from "../images/Header/search.svg";
 import Cancel from "../images/Header/cancel.svg";
-import Options from "../images/Header/Options.svg";
 import Noti from "../images/Header/noti.svg";
 import Avatar from "../images/Header/avatar.svg";
 import Up from "../images/Header/up.svg";
 import Notification from "../modules/Header/Notification";
 import Account from "../modules/Header/Account";
+import Drawer from "./Drawer";
 
 const Header = () => {
   return (
@@ -31,12 +31,7 @@ const Header = () => {
             <img src={Cancel} alt="" />
           </button>
         </label>
-        <button
-          className="size-[40px] bg-white flex justify-center 
-        items-center rounded-full shadow"
-        >
-          <img src={Options} alt="" />
-        </button>
+        <Drawer id="filter" />
       </div>
       {/* noti va user */}
       <div className="flex items-center gap-3">
