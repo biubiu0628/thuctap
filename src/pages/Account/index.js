@@ -12,6 +12,7 @@ import Input from "../../modules/CreateOrder/Input";
 import DropDown from "../../modules/Account/DropDown";
 import Calendar from "../../components/Calendar";
 import GioiTinh from "../../modules/Account/GioiTinh";
+import ChangePass from "../../modules/Account/Drawer/ChangePass";
 
 const Account = () => {
   const [nameShop, setNameShop] = useState(false);
@@ -34,12 +35,9 @@ const Account = () => {
           <span className="font-pro">Xin chào,</span>
           <span className="font-proBold">SuperShip Test!</span>
         </p>
-        <button
-          className="btn bg-white uppercase text-[14px] font-proBold text-[#F32034] 
-        border-[1px] border-[#EF586B] w-[208px] h-[53px] rounded-md shadow"
-        >
-          Đổi mật khẩu
-        </button>
+        <div>
+          <ChangePass />
+        </div>
       </div>
       <div
         className="bg-white grid grid-cols-4 w-full 

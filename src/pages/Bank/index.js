@@ -1,5 +1,6 @@
 import React from "react";
 import CreditCard from "../../modules/Bank/CreditCard";
+import Add from "../../modules/Bank/Add";
 
 const Bank = () => {
   return (
@@ -7,12 +8,7 @@ const Bank = () => {
       <CreditCard bank="techcombank" />
       <CreditCard bank="vietcombank" />
       <CreditCard bank="vietcombank" />
-      <div
-        className="w-[400px] h-[250px] border-[2px] border-dashed border-[#F32034] 
-        rounded-2xl flex items-center justify-center cursor-pointer"
-      >
-        <p className="font-proBold text-[22px] text-[#F32034]">+ Tạo mới</p>
-      </div>
+      <Add />
     </div>
   );
 };

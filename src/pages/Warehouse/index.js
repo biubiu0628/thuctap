@@ -1,6 +1,6 @@
 import React from "react";
-import Add from "../../images/Nav/add.svg";
 import BodyTable from "../../modules/Warehouse/BodyTable";
+import Create from "../../modules/Warehouse/Create";
 
 const Warehouse = () => {
   return (
@@ -19,15 +19,7 @@ const Warehouse = () => {
             </span>
           </p>
         </div>
-        <button
-          className="btn h-[60px] flex gap-1 items-center justify-center 
-        bg-gradient-to-b from-[#EF586B] to-[#D9112A] rounded-md"
-        >
-          <img src={Add} alt="" />
-          <p className="uppercase font-proBold text-[12px] text-white">
-            Tạo mới
-          </p>
-        </button>
+        <Create />
       </div>
       <table className="w-full rounded-2xl overflow-hidden mt-4">
         <thead>

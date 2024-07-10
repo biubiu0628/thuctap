@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Input from "../modules/Register/Input";
 import InputPass from "../modules/Register/InputPass";
+import InputArea from "../modules/Register/InputArea";
 import Code from "../images/Component/Code.svg";
 import Shop from "../images/Component/Shop.svg";
 import User from "../images/Component/User.svg";
 import Phone from "../images/Component/Phone.svg";
 import Email from "../images/Component/Email.svg";
 import Image from "../images/Component/Image.svg";
-import InputArea from "../modules/Register/InputArea";
+import Build from "../images/Component/Build.svg";
 
 const Register = () => {
   const [isInputArea, setIsInputArea] = useState(false);
@@ -28,7 +29,11 @@ const Register = () => {
         <p className="font-proBold text-[58px] text-[#F32034]">Đăng ký</p>
         <div className="flex flex-col items-center w-full">
           <div className="grid grid-cols-2 gap-4 w-full">
-            <InputArea isArea={isInputArea} setIsArea={setIsInputArea} />
+            <InputArea
+              image={Build}
+              isArea={isInputArea}
+              setIsArea={setIsInputArea}
+            />
             <Input
               id="code"
               text="Mã giới thiệu"

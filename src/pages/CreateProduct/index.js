@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GoBack from "../../images/Create/GoBack.svg";
 import Question from "../../images/Create/Question.svg";
+import Input from "../../modules/CreateProduct/Input";
 
 const Radio = ({ text, handleChecked, isCheck, value }) => (
   <div className="flex items-center gap-1">
@@ -23,6 +24,8 @@ const Radio = ({ text, handleChecked, isCheck, value }) => (
 
 const CreateProduct = () => {
   const [isCheck, setIsCheck] = useState("");
+  const [isInputDes, setIsInputDes] = useState(false);
+  const [isInputCode, setIsInputCode] = useState(false);
   const handleChecked = (e) => setIsCheck(e.target.value);
 
   return (
@@ -103,16 +106,11 @@ const CreateProduct = () => {
             </div>
           </div>
           <div className="py-4 px-8">
-            <label
-              className="w-full h-[52px] bg-[#F7F7F7] 
-            rounded-lg flex items-center px-4 "
-            >
-              <input
-                placeholder="Mô tả sản phẩm"
-                className="focus:outline-none bg-[#F7F7F7] w-full 
-              text-[14px] font-proMedium placeholder-[#666666]"
-              />
-            </label>
+            <Input
+              text="Mô tả sản phẩm"
+              isInput={isInputDes}
+              setIsInput={setIsInputDes}
+            />
           </div>
           <div className="py-4 px-8 border-y-[1px]">
             <div className="flex w-full justify-between">
@@ -136,6 +134,14 @@ const CreateProduct = () => {
                 isCheck={isCheck}
               />
             </div>
+          </div>
+          <div className="py-4 px-8 flex flex-col gap-4 border-b-[1px]">
+            <p className="font-proMedium text-[16px]">Thông tin khác</p>
+            <Input
+              text="Mã sản phẩm"
+              isInput={isInputCode}
+              setIsInput={setIsInputCode}
+            />
           </div>
         </div>
       </div>

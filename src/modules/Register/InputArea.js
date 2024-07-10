@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Build from "../../images/Component/Build.svg";
 import Down from "../../images/Create/Down.svg";
 import Area from "./Area";
 
-const InputArea = ({ isArea, setIsArea }) => {
+const InputArea = ({ image, isArea, setIsArea }) => {
   const [isDrop, setIsDrop] = useState(false);
   const [selectedArea, setSelectedArea] = useState("");
 
@@ -35,7 +34,7 @@ const InputArea = ({ isArea, setIsArea }) => {
       >
         <div className="flex items-center gap-2 w-full">
           <div className="size-[20px] flex items-center justify-center">
-            <img src={Build} alt="" />
+            <img src={image} alt="" />
           </div>
           <input
             type="text"
