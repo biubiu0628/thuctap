@@ -17,7 +17,7 @@ const FileImage = () => {
   };
 
   return (
-    <div className="flex gap-3 p-4">
+    <div className="flex flex-wrap gap-3 py-4">
       <div>
         <label
           htmlFor="upImage"

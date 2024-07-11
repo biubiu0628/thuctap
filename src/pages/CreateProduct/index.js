@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import GoBack from "../../images/Create/GoBack.svg";
 import Question from "../../images/Create/Question.svg";
+import Draft from "../../images/Create/Draft.svg";
+import Add from "../../images/Nav/add.svg";
 import Input from "../../modules/CreateProduct/Input";
+import Check from "../../modules/CreateOrder/Check";
+import FileImage from "../../modules/CreateOrder/FileImage";
 
 const Radio = ({ text, handleChecked, isCheck, value }) => (
   <div className="flex items-center gap-1">
@@ -28,9 +32,29 @@ const CreateProduct = () => {
   const [isInputCode, setIsInputCode] = useState(false);
   const handleChecked = (e) => setIsCheck(e.target.value);
 
+  const [isChoose, setIsChoose] = useState(new Array(7).fill(false));
+  const handleChoose = (index) => {
+    const newIsChoose = [...isChoose];
+    newIsChoose[index] = !newIsChoose[index];
+    setIsChoose(newIsChoose);
+  };
+
+  const checks1 = [
+    { text: "Giá trị cao" },
+    { text: "Dễ vỡ" },
+    { text: "Chất lỏng" },
+    { text: "Hàng lạnh" },
+  ];
+
+  const checks2 = [
+    { text: "Nguyên khối" },
+    { text: "Từ tính, Pin" },
+    { text: "Cồng kềnh" },
+  ];
+
   return (
-    <div>
-      <div className="flex items-center gap-4">
+    <div className="flex flex-col ">
+      <div className="flex items-center gap-4 py-10">
         <button
           className="size-[40px] rounded-full bg-white 
             flex items-center justify-center shadow"
@@ -44,7 +68,7 @@ const CreateProduct = () => {
           Tạo sản phẩm
         </p>
       </div>
-      <div className="flex">
+      <div className="flex gap-4">
         <div className="bg-white w-[900px] py-8 rounded-2xl border-[1px]">
           {/* bang san pham */}
           <div className="px-8">
@@ -142,6 +166,55 @@ const CreateProduct = () => {
               isInput={isInputCode}
               setIsInput={setIsInputCode}
             />
+          </div>
+          <div className="grid grid-cols-2 p-8 pb-0">
+            <div className="flex flex-col gap-2">
+              {checks1.map((check1, index) => (
+                <Check
+                  key={index}
+                  index={index}
+                  text={check1.text}
+                  handleChoose={handleChoose}
+                  isChoose={isChoose[index]}
+                />
+              ))}
+            </div>
+            <div className="flex flex-col gap-2">
+              {checks2.map((check2, index) => (
+                <Check
+                  key={index + checks1.length}
+                  index={index + checks1.length}
+                  text={check2.text}
+                  handleChoose={handleChoose}
+                  isChoose={isChoose[index + checks1.length]}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex-grow w-[636px]">
+          <div className="bg-white rounded-2xl border-[1px] p-8 w-full">
+            <div className="flex justify-between">
+              <p className="font-proBold text-[16px]">Ảnh hàng hóa</p>
+              <p className="font-pro text-[14px] text-[#F32034]">Xóa tất cả</p>
+            </div>
+            <FileImage />
+          </div>
+          <div className="grid grid-cols-2 gap-4 pt-6">
+            <button
+              className="flex items-center justify-center gap-2 
+              h-[50px] bg-white font-proBold text-[14px] rounded-md"
+            >
+              <img src={Draft} alt="" />
+              <p>Lưu nháp</p>
+            </button>
+            <button
+              className="flex items-center justify-center gap-2 h-[50px] bg-gradient-to-b 
+              from-[#EF586B] to-[#D9112A] text-white font-proBold text-[14px] rounded-md"
+            >
+              <img src={Add} alt="" />
+              <p>Tạo mới</p>
+            </button>
           </div>
         </div>
       </div>

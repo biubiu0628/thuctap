@@ -97,7 +97,10 @@ const Stat = () => {
                   <DonutStatus />
                 </Table>
               ) : (
-                <Table></Table>
+                <Table
+                  name="Số lượng đơn hàng"
+                  date="Tháng 10 năm 2023"
+                ></Table>
               )}
             </div>
           )}
