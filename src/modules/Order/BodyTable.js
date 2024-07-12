@@ -5,10 +5,10 @@ import BoxSearch from "../../images/Order/BoxSearch.svg";
 import Note from "../../images/Order/Note.svg";
 import Box from "../../images/Order/Box.svg";
 import Edit from "../../images/Order/Edit.svg";
-import LocationArrow from "../../images/Order/LocationArrow.svg";
 import Headphone from "../../images/Order/Headphone.svg";
 import Info from "../../modules/Order/Info";
 import Button from "../../modules/Order/Button";
+import Barcode from "../../modules/Order/Barcode";
 
 const BodyTable = ({ isClick }) => {
   const [isCheck, setIsCheck] = useState(false);
@@ -66,7 +66,7 @@ const BodyTable = ({ isClick }) => {
       <td>
         <div className="flex gap-2 justify-center">
           <Button image={Edit} />
-          <Button image={LocationArrow} />
+          <Barcode />
           <Button image={Headphone} />
         </div>
       </td>

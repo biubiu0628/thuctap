@@ -24,6 +24,7 @@ const ChangePass = () => {
         </label>
       </div>
       <div className="drawer-side z-10">
+        <label className="drawer-overlay"></label>
         <div className="h-screen bg-white w-1/4 rounded-l-xl">
           <div className="flex items-center px-10 border-b-[1px] h-[13%]">
             <p className="font-proBold text-[28px]">Thay đổi mật khẩu</p>
